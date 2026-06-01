@@ -1,0 +1,523 @@
+{
+  "users": [
+    {
+      "id": "user_admin",
+      "email": "admin@sitebot.ai",
+      "name": "Alex platform Admin",
+      "role": "super_admin",
+      "createdAt": "2026-06-01T07:14:36.897Z"
+    },
+    {
+      "id": "user_owner_1",
+      "email": "owner@restaurant.com",
+      "name": "Marco Rossi",
+      "role": "business_owner",
+      "businessId": "business_1",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    },
+    {
+      "id": "user_staff_1",
+      "email": "staff@restaurant.com",
+      "name": "Luigi Pizza",
+      "role": "staff",
+      "businessId": "business_1",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    },
+    {
+      "id": "user_owner_2",
+      "email": "owner@clothing.com",
+      "name": "Sarah Jenkins",
+      "role": "business_owner",
+      "businessId": "business_2",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    },
+    {
+      "id": "user_owner_3",
+      "email": "owner@medical.com",
+      "name": "Dr. Evelyn Stone",
+      "role": "business_owner",
+      "businessId": "business_3",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    },
+    {
+      "id": "user_rbtvlrr3m",
+      "email": "yasirkhan723423@gmail.com",
+      "name": "Hello",
+      "role": "business_owner",
+      "businessId": "business_s6fjem8tz",
+      "createdAt": "2026-06-01T07:20:27.822Z"
+    }
+  ],
+  "businesses": [
+    {
+      "id": "business_1",
+      "name": "Bella Italia",
+      "category": "Restaurant",
+      "websiteUrl": "https://www.bellaitalia-menu.com",
+      "logo": "🍕",
+      "status": "disabled",
+      "planId": "pro",
+      "createdAt": "2026-06-01T07:14:36.905Z",
+      "chatbotSettings": {
+        "botName": "BellaBot",
+        "welcomeMessage": "Ciao! Welcome to Bella Italia. 🍕 Ready to explore our wood-fired pizzas, reserve a table, or ask about our hours?",
+        "fallbackMessage": "I'm sorry, I couldn't find details on that option in our menu. Would you like to speak to our staff or open a support ticket?",
+        "primaryColor": "#e11d48",
+        "logo": "🍕",
+        "tone": "friendly",
+        "businessHours": {
+          "enabled": true,
+          "start": "12:00",
+          "end": "22:00",
+          "timezone": "EST",
+          "awayMessage": "We are currently closed! We offer wood-fired pizzas from Tuesday to Sunday, 12:00 PM to 10:00 PM. Please leave your details and we will follow up."
+        },
+        "leadCaptureFields": {
+          "name": true,
+          "email": true,
+          "phone": true,
+          "message": false,
+          "requiredBeforeChat": false
+        }
+      }
+    },
+    {
+      "id": "business_2",
+      "name": "TrendVibe Clothing",
+      "category": "Clothing",
+      "websiteUrl": "https://www.trendvibeclothing.store",
+      "logo": "👕",
+      "status": "active",
+      "planId": "basic",
+      "createdAt": "2026-06-01T07:14:36.905Z",
+      "chatbotSettings": {
+        "botName": "VibeBot",
+        "welcomeMessage": "Hey there! Welcome to TrendVibe. 🛍️ Ask me about our sizing, return policy, or latest summer drop!",
+        "fallbackMessage": "Hmm, I don't see that specific product in our summer catalog. Would you like me to connect you with a live styling expert?",
+        "primaryColor": "#7c3aed",
+        "logo": "👕",
+        "tone": "playful",
+        "businessHours": {
+          "enabled": false,
+          "start": "09:00",
+          "end": "18:00",
+          "timezone": "PST",
+          "awayMessage": "Our styling crew is currently offline, but feel free to browse or leave your email so we can get back to you!"
+        },
+        "leadCaptureFields": {
+          "name": true,
+          "email": true,
+          "phone": false,
+          "message": false,
+          "requiredBeforeChat": true
+        }
+      }
+    },
+    {
+      "id": "business_3",
+      "name": "ClearVision Optometry",
+      "category": "Medical",
+      "websiteUrl": "https://www.clearvisionoptometry.com",
+      "logo": "👁️",
+      "status": "active",
+      "planId": "pro",
+      "createdAt": "2026-06-01T07:14:36.905Z",
+      "chatbotSettings": {
+        "botName": "VisionBot",
+        "welcomeMessage": "Hello and welcome to ClearVision Optometry. 👁️ Need help with appointment scheduling, insurance coverage, or eye exam options?",
+        "fallbackMessage": "I apologize, but that eye health question should be diagnosed by a professional. Type 'agent' or click help to speak to our optometrist staff.",
+        "primaryColor": "#0284c7",
+        "logo": "👁️",
+        "tone": "professional",
+        "businessHours": {
+          "enabled": true,
+          "start": "08:30",
+          "end": "17:00",
+          "timezone": "CST",
+          "awayMessage": "Our clinic is currently closed. If this is a medical emergency, please dial 911. Otherwise, leave a message and we will contact you during business hours."
+        },
+        "leadCaptureFields": {
+          "name": true,
+          "email": true,
+          "phone": true,
+          "message": true,
+          "requiredBeforeChat": false
+        }
+      }
+    },
+    {
+      "id": "business_s6fjem8tz",
+      "name": "Hello",
+      "category": "Other",
+      "websiteUrl": "https://yourwebsite.com",
+      "logo": "🤖",
+      "status": "active",
+      "planId": "free",
+      "createdAt": "2026-06-01T07:20:27.822Z",
+      "chatbotSettings": {
+        "botName": "Hello AI",
+        "welcomeMessage": "Hello, welcome to our website! How can I assist you with Hello products or services today?",
+        "fallbackMessage": "I apologize, but I couldn't find information on that topic in our documents. Would you like me to connect you to a staff member or open a support ticket?",
+        "primaryColor": "#2563eb",
+        "logo": "🤖",
+        "tone": "friendly",
+        "businessHours": {
+          "enabled": false,
+          "start": "09:00",
+          "end": "17:00",
+          "timezone": "UTC",
+          "awayMessage": "We are currently offline. Please leave your contact details so we can reach out!"
+        },
+        "leadCaptureFields": {
+          "name": true,
+          "email": true,
+          "phone": false,
+          "requiredBeforeChat": false,
+          "message": false
+        }
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq_1",
+      "businessId": "business_1",
+      "question": "What are your opening hours?",
+      "answer": "We are open Tuesday to Sunday from 12:00 PM to 10:00 PM (12:00 - 22:00). We are closed on Mondays.",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    },
+    {
+      "id": "faq_2",
+      "businessId": "business_1",
+      "question": "Do you offer gluten-free options?",
+      "answer": "Yes! We offer gluten-free crusts for any of our wood-fired pizzas for an additional $3. We also have gluten-free pasta available on request.",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    },
+    {
+      "id": "faq_3",
+      "businessId": "business_1",
+      "question": "Do you take reservations?",
+      "answer": "Yes, we highly recommend booking in advance, especially for weekend dinner slots. You can reserve a table by typing 'agent' to connect with our host staff, or call us directly.",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    },
+    {
+      "id": "faq_4",
+      "businessId": "business_1",
+      "question": "Where are you located?",
+      "answer": "We are located in the heart of downtown at 123 Gourmet Way, Culinary City.",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    },
+    {
+      "id": "faq_5",
+      "businessId": "business_2",
+      "question": "What is your return policy?",
+      "answer": "We accept returns within 30 days of purchase for a full refund or store credit. Items must be unworn, with original tag attachments, and in their original packaging.",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    },
+    {
+      "id": "faq_6",
+      "businessId": "business_2",
+      "question": "How much is shipping?",
+      "answer": "We offer free standard shipping on all US orders over $75. For orders under $75, standard shipping is a flat rate of $6.99. Express 2-day shipping is available for $14.99.",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    },
+    {
+      "id": "faq_7",
+      "businessId": "business_3",
+      "question": "Do you accept VSP insurance?",
+      "answer": "Yes! We are an in-network provider for VSP, EyeMed, Davis Vision, and Cigna eye plans. Please provide your member ID card before your exam.",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    },
+    {
+      "id": "faq_8",
+      "businessId": "business_3",
+      "question": "How long does a standard eye exam take?",
+      "answer": "A comprehensive eye health and vision exam typically takes 30 to 45 minutes. Contact lens fittings or specialized imaging can add an extra 15-20 minutes.",
+      "createdAt": "2026-06-01T07:14:36.905Z"
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc_1",
+      "businessId": "business_1",
+      "name": "Dinner_Menu.pdf",
+      "type": "pdf",
+      "content": "Bella Italia Dinner Menu: \nAppetizers: Wood-Fired Garlic Bread ($7), Caprese Salad with buffalo mozzarella and beefsteak tomatoes ($12), Crispy Calamari with fresh lemon garlic aioli ($14).\nSignature Wood-Fired Pizzas: \n- Margherita ($16): Crushed San Marzano tomatoes, fresh buffalo mozzarella, fresh basil leaves, and extra virgin olive oil.\n- Diavola ($19): Spicy Italian salami, mozzarella, organic honey drizzle, and red chili flakes.\n- Prosciutto e Rucola ($21): Prosciutto di Parma, wild baby arugula, shaved aged parmesan, and mozzarella.\n- White Truffle Mushroom ($22): Roasted cremini & shiitake mushrooms, white truffle oil, fontina, and taleggio.\nFresh Handcrafted Pastas: \n- Fettuccine Alfredo ($18): Rich heavy cream sauce, parmigiano-reggiano, and butter. Add chicken for $5.\n- Spaghetti Carbonara ($19): Guanciale, pecorino romano, fresh farm egg yolk, and cracked black pepper.\n- Seafood Linguine ($25): Wild-caught shrimp, clams, mussels, fresh garlic, white wine butter sauce.\nDesserts: Classic Espresso Tiramisu ($9), Warm Chocolate Lava Cake with vanilla bean gelato ($10).\nBeverages: San Pellegrino Sparkling Water ($5), Italian craft beers ($7), and high-quality wines by glass starting at $8.",
+      "uploadDate": "2026-06-01T07:14:36.905Z",
+      "uploadedBy": "Marco Rossi",
+      "status": "processed"
+    },
+    {
+      "id": "doc_2",
+      "businessId": "business_1",
+      "name": "Catering_Delivery_Policies.txt",
+      "type": "txt",
+      "content": "Delivery Guidelines & Policies:\nWe offer direct local delivery within a 5-mile radius of downtown. Delivery is completely FREE for orders over $30. For smaller orders under $30, we charge a flat local delivery fee of $4.99. Our delivery fleet operates daily from 12:30 PM to 9:30 PM.\nCatering Services:\nWe provide professional catering structures for corporate lunches, birthdays, wedding rehearsals, and family gatherings. We require a minimum of 48 hours notice for catering projects under 50 guests, and 5 days notice for bigger parties. Delivery setup is included. For direct quotes and customizing a catering menu, email the banquets team at catering@bellaitalia.com.",
+      "uploadDate": "2026-06-01T07:14:36.905Z",
+      "uploadedBy": "Marco Rossi",
+      "status": "processed"
+    },
+    {
+      "id": "doc_3",
+      "businessId": "business_2",
+      "name": "Apparel_Size_Guides.docx",
+      "type": "docx",
+      "content": "TrendVibe Apparel Size Chart:\nWomen's Tops & Outerwear (Bust size in inches):\n- XS (Size 0-2): Bust 30\" - 32\"\n- S (Size 4-6): Bust 33\" - 35\"\n- M (Size 8-10): Bust 36\" - 38\"\n- L (Size 12-14): Bust 39\" - 41\"\n- XL (Size 16): Bust 42\" - 44\"\nWomen's Denim & Pants (Waist / Hips measurements):\n- Size 25 / Size 2: Waist 25\", Hips 35\"\n- Size 26 / Size 4: Waist 26\", Hips 36\"\n- Size 27 / Size 6: Waist 27\", Hips 37\"\n- Size 28 / Size 8: Waist 28\", Hips 38\"\n- Size 29 / Size 10: Waist 29.5\", Hips 39.5\"\nMen's Essential Shirts (Chest size in inches):\n- Small: Chest 35\" - 37\"\n- Medium: Chest 38\" - 40\"\n- Large: Chest 41\" - 43\"\n- X-Large: Chest 44\" - 46\"\nGeneral Fit note: Our structured denims fit completely true to size. If you are between two sizes, we highly recommend purchasing one size up for a comfortable, stylish, relaxed fit.",
+      "uploadDate": "2026-06-01T07:14:36.905Z",
+      "uploadedBy": "Sarah Jenkins",
+      "status": "processed"
+    },
+    {
+      "id": "doc_4",
+      "businessId": "business_3",
+      "name": "Eye_Care_Services_Pricing.pdf",
+      "type": "pdf",
+      "content": "ClearVision Optometry Services Price List (Without Insurance):\n- Comprehensive Eye Vision Exam & Retinal Health Check: $120\n- Pediatric Children's Vision Exam (Ages 5-12): $95\n- Contact Lens Fitting Exam & Lens Hygiene Tutorial: $60\n- Retinal Scanning Wellness Photography Screen: $39\n- Dry Eye Therapeutic Evaluation & Plan: $45\nOptical Eyewear Products:\n- Premium Single Vision Lenses (with anti-reflective coat): $99 onwards\n- High-Definition Progressive Lenses: $220 onwards\n- Designer Premium Frames (Ray-Ban, Oakley, Gucci): $149 - $399\nParking Information:\nWe validate 100% free parking for up to 90 minutes in the Medical Towers parking garage. Ensure you bring your parking ticket to the check-in reception desk.",
+      "uploadDate": "2026-06-01T07:14:36.905Z",
+      "uploadedBy": "Dr. Evelyn Stone",
+      "status": "processed"
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_1",
+      "businessId": "business_1",
+      "name": "Rebecca Harrison",
+      "email": "rebecca@harriscorp.com",
+      "phone": "555-0199",
+      "message": "Looking for a catering quote for a 35-person corporate launch on June 15th.",
+      "sourcePage": "https://www.bellaitalia-menu.com/catering",
+      "timestamp": "2026-05-28T07:14:36.906Z",
+      "status": "new"
+    },
+    {
+      "id": "lead_2",
+      "businessId": "business_1",
+      "name": "Tom Peterson",
+      "email": "tom.pete@gmail.com",
+      "phone": "555-0245",
+      "message": "Do you allow dogs on the outdoor pizza patio? Thinking of booking for 8 people.",
+      "sourcePage": "https://www.bellaitalia-menu.com/contact",
+      "timestamp": "2026-05-30T07:14:36.906Z",
+      "status": "contacted"
+    },
+    {
+      "id": "lead_3",
+      "businessId": "business_2",
+      "name": "Ashley Gomez",
+      "email": "ashleyg@fashionblog.io",
+      "phone": "555-0812",
+      "message": "Interested in bulk order of custom graphic tees for a dance team.",
+      "sourcePage": "https://www.trendvibeclothing.store",
+      "timestamp": "2026-06-01T05:14:36.906Z",
+      "status": "qualified"
+    }
+  ],
+  "tickets": [
+    {
+      "id": "ticket_1",
+      "businessId": "business_1",
+      "title": "Catering Menu Customization Query",
+      "description": "Hi, we received your generic catering menu but wanted to ask if we can substitute the Fettuccine Alfredo with the Seafood Linguine for our event, and what would the price markup be per guest? Thanks!",
+      "visitorName": "David Vance",
+      "visitorEmail": "david.vance@techconsult.net",
+      "visitorPhone": "555-4421",
+      "priority": "medium",
+      "status": "open",
+      "createdAt": "2026-05-31T07:14:36.906Z",
+      "replies": [
+        {
+          "id": "r_1",
+          "senderName": "David Vance",
+          "senderRole": "visitor",
+          "message": "Hi, we received your generic catering menu but wanted to ask if we can substitute the Fettuccine Alfredo with the Seafood Linguine for our event, and what would the price markup be per guest? Thanks!",
+          "timestamp": "2026-05-31T07:14:36.906Z"
+        }
+      ]
+    },
+    {
+      "id": "ticket_2",
+      "businessId": "business_1",
+      "title": "Burnt Diavola Pizza Refund Request",
+      "description": "Hey, I ordered a takeaway Diavola pizza yesterday night and the entire crust backing was heavily burnt. It tasted like ash. I had to throw it out. Requesting a coupon or refund.",
+      "visitorName": "Michael Chang",
+      "visitorEmail": "mchang@outlook.com",
+      "visitorPhone": "555-0922",
+      "priority": "high",
+      "status": "resolved",
+      "createdAt": "2026-05-29T07:14:36.906Z",
+      "replies": [
+        {
+          "id": "r_2",
+          "senderName": "Michael Chang",
+          "senderRole": "visitor",
+          "message": "Hey, I ordered a takeaway Diavola pizza yesterday night and the entire crust backing was heavily burnt. It tasted like ash.",
+          "timestamp": "2026-05-29T07:14:36.906Z"
+        },
+        {
+          "id": "r_3",
+          "senderName": "Luigi Pizza",
+          "senderRole": "staff",
+          "message": "Hi Michael, I am incredibly sorry to hear your pizza was burnt! That does not meet our standard of wood-fired quality. I have processed a full $19 refund to your card. I've also added a $10 credit to your phone number for your next order. Ciao!",
+          "timestamp": "2026-05-29T19:14:36.906Z"
+        },
+        {
+          "id": "r_4",
+          "senderName": "Michael Chang",
+          "senderRole": "visitor",
+          "message": "Thank you so much Luigi for the speedy refund and amazing customer service! Will definitely command again.",
+          "timestamp": "2026-05-30T07:14:36.906Z"
+        }
+      ]
+    }
+  ],
+  "chatSessions": [
+    {
+      "id": "session_1",
+      "businessId": "business_1",
+      "visitorSessionId": "vs_demo_1",
+      "visitorName": "Elena Rostova",
+      "visitorEmail": "elena.r@gmail.com",
+      "visitorPhone": "555-9011",
+      "status": "staff_active",
+      "assignedTo": "user_staff_1",
+      "lastMessageAt": "2026-06-01T07:14:36.906Z",
+      "createdAt": "2026-06-01T06:44:36.906Z"
+    }
+  ],
+  "chatMessages": [
+    {
+      "id": "m_1",
+      "businessId": "business_1",
+      "chatId": "session_1",
+      "sender": "visitor",
+      "senderName": "Elena Rostova",
+      "message": "Hello! I have a question about gluten-free pizza crust.",
+      "timestamp": "2026-06-01T06:45:36.906Z"
+    },
+    {
+      "id": "m_2",
+      "businessId": "business_1",
+      "chatId": "session_1",
+      "sender": "bot",
+      "senderName": "BellaBot",
+      "message": "Ciao Elena! Yes! We offer delicious gluten-free thin crusts for any of our wood-fired pizzas for an additional $3 markup. We highlight that we also offer gluten-free pasta on request. Would you like to check out our signature dishes or book a table?",
+      "timestamp": "2026-06-01T06:46:36.906Z",
+      "sources": [
+        "FAQ"
+      ]
+    },
+    {
+      "id": "m_3",
+      "businessId": "business_1",
+      "chatId": "session_1",
+      "sender": "visitor",
+      "senderName": "Elena Rostova",
+      "message": "Are they cooked in a separate oven? I have highly critical celiac disease.",
+      "timestamp": "2026-06-01T06:49:36.906Z"
+    },
+    {
+      "id": "m_4",
+      "businessId": "business_1",
+      "chatId": "session_1",
+      "sender": "bot",
+      "senderName": "BellaBot",
+      "message": "I'm sorry, I couldn't find details on that specific baking sanitation procedure in our menu or policies. Let me connect you with our live staff right now to assist you safely!",
+      "timestamp": "2026-06-01T06:50:36.906Z",
+      "sources": [
+        "Catering_Delivery_Policies.txt"
+      ]
+    },
+    {
+      "id": "m_5",
+      "businessId": "business_1",
+      "chatId": "session_1",
+      "sender": "visitor",
+      "senderName": "Elena Rostova",
+      "message": "Yes please, connect me to staff.",
+      "timestamp": "2026-06-01T06:52:36.906Z"
+    },
+    {
+      "id": "m_6",
+      "businessId": "business_1",
+      "chatId": "session_1",
+      "sender": "staff",
+      "senderName": "Luigi Pizza",
+      "message": "Ciao Elena! Luigi here! To answer your question: while we make gluten-free crusts, they are baked in the same massive wood-fired pizza oven on a separate clean metal tray. However, since flour is in the air, there is a risk of light cross-contamination. If you have extreme celiac, we recommend our gluten-free pasta which is boiled individually in a dedicated pot!",
+      "timestamp": "2026-06-01T06:54:36.906Z"
+    }
+  ],
+  "plans": [
+    {
+      "id": "free",
+      "name": "Free Trial",
+      "price": 0,
+      "limits": {
+        "chatbots": 1,
+        "documents": 2,
+        "messagesPerMonth": 100,
+        "staffMembers": 1,
+        "leads": 10
+      }
+    },
+    {
+      "id": "basic",
+      "name": "Basic Startup",
+      "price": 19,
+      "limits": {
+        "chatbots": 1,
+        "documents": 10,
+        "messagesPerMonth": 1000,
+        "staffMembers": 2,
+        "leads": 100
+      }
+    },
+    {
+      "id": "pro",
+      "name": "Pro Growth",
+      "price": 49,
+      "limits": {
+        "chatbots": 3,
+        "documents": 50,
+        "messagesPerMonth": 5000,
+        "staffMembers": 5,
+        "leads": 500
+      }
+    },
+    {
+      "id": "business",
+      "name": "Enterprise Business",
+      "price": 99,
+      "limits": {
+        "chatbots": 99,
+        "documents": 200,
+        "messagesPerMonth": 25000,
+        "staffMembers": 99,
+        "leads": 9999
+      }
+    }
+  ],
+  "unansweredQuestions": [
+    {
+      "id": "uq_1",
+      "businessId": "business_1",
+      "question": "Do you offer vegan dairy-free cheese?",
+      "count": 12,
+      "createdAt": "2026-06-01T07:14:36.906Z"
+    },
+    {
+      "id": "uq_2",
+      "businessId": "business_1",
+      "question": "Can we book the entire restaurant for filming commercial video?",
+      "count": 4,
+      "createdAt": "2026-06-01T07:14:36.906Z"
+    },
+    {
+      "id": "uq_3",
+      "businessId": "business_2",
+      "question": "What is the material blend of cargo shorts?",
+      "count": 18,
+      "createdAt": "2026-06-01T07:14:36.906Z"
+    }
+  ]
+}

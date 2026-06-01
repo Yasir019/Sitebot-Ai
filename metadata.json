@@ -1,0 +1,6 @@
+{
+  "name": "SiteBot AI",
+  "description": "AI-powered chatbot SaaS platform that answers user questions using uploaded documents and FAQs through a secure RAG system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

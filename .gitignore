@@ -1,0 +1,11 @@
+node_modules/
+build/
+dist/
+coverage/
+.vite-cache/
+.chrome-cdp/
+assets/.aistudio/
+.DS_Store
+*.log
+.env*
+!.env.example

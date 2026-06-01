@@ -1,0 +1,151 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A registered user of the platform (Admin, Business Owner, or Staff member)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique user identifier, usually matching their auth UID" },
+        "email": { "type": "string", "format": "email", "description": "The email address of the user" },
+        "name": { "type": "string", "description": "The full name of the user" },
+        "role": { "type": "string", "enum": ["super_admin", "business_owner", "staff"], "description": "The role of the user inside the platform" },
+        "businessId": { "type": "string", "description": "Reference to the business ID if the user is owner or staff" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "The registration timestamp" }
+      },
+      "required": ["id", "email", "name", "role", "createdAt"]
+    },
+    "Business": {
+      "title": "Business",
+      "description": "A client business account on the SaaS platform",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique business identifier" },
+        "name": { "type": "string", "description": "The display name of the business" },
+        "category": { "type": "string", "description": "The primary business category or industry" },
+        "websiteUrl": { "type": "string", "description": "The custom business website URL" },
+        "logo": { "type": "string", "description": "Unicode emoji or image URL representing the logo" },
+        "status": { "type": "string", "enum": ["active", "suspended"], "description": "The subscription state of the business" },
+        "planId": { "type": "string", "description": "The ID of the SaaS plan that this business sits on" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "The onboarding timestamp of this business" },
+        "chatbotSettings": {
+          "type": "object",
+          "description": "The customized assistant visual and behavior settings"
+        }
+      },
+      "required": ["id", "name", "category", "status", "planId", "createdAt"]
+    },
+    "Faq": {
+      "title": "Faq",
+      "description": "Frequently Asked Question representing structured Q&A training documents",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique FAQ identifier" },
+        "businessId": { "type": "string", "description": "The owning business workspace ID" },
+        "question": { "type": "string", "description": "The user query prompt" },
+        "answer": { "type": "string", "description": "The trained custom answer to return" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" }
+      },
+      "required": ["id", "businessId", "question", "answer", "createdAt"]
+    },
+    "Document": {
+      "title": "Document",
+      "description": "RAG Knowledge Base context file upload (txt, pdf, docx)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique document identifier" },
+        "businessId": { "type": "string", "description": "The owning business workspace ID" },
+        "name": { "type": "string", "description": "The uploaded file name" },
+        "type": { "type": "string", "enum": ["txt", "pdf", "docx"], "description": "The uploaded file structure format" },
+        "content": { "type": "string", "description": "The raw text parsed from the uploaded material" },
+        "uploadDate": { "type": "string", "format": "date-time", "description": "The upload timestamp" },
+        "uploadedBy": { "type": "string", "description": "The uploader identifier" },
+        "status": { "type": "string", "enum": ["processed", "processing", "failed"], "description": "The current processing text status" }
+      },
+      "required": ["id", "businessId", "name", "type", "content", "uploadDate", "uploadedBy", "status"]
+    },
+    "Lead": {
+      "title": "Lead",
+      "description": "Customer contact lead record captured from the chatbot interface",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique lead identifier" },
+        "businessId": { "type": "string", "description": "The business workspace ID tracking this lead" },
+        "name": { "type": "string", "description": "The captured customer name" },
+        "email": { "type": "string", "format": "email", "description": "The captured customer email" },
+        "phone": { "type": "string", "description": "The captured customer phone number" },
+        "message": { "type": "string", "description": "The initial message or system lead summary" },
+        "sourcePage": { "type": "string", "description": "The website page URL where the lead submitted details" },
+        "timestamp": { "type": "string", "format": "date-time", "description": "The capture timestamp" },
+        "status": { "type": "string", "enum": ["new", "contacted", "qualified", "closed"], "description": "The follow-up state of the lead" }
+      },
+      "required": ["id", "businessId", "name", "timestamp", "status"]
+    },
+    "Ticket": {
+      "title": "Ticket",
+      "description": "Customer helpdesk supporting tickets filed",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique support ticket identifier" },
+        "businessId": { "type": "string", "description": "The owning business workspace ID" },
+        "title": { "type": "string", "description": "The ticket title statement" },
+        "description": { "type": "string", "description": "The details details statement" },
+        "visitorName": { "type": "string", "description": "The supporting visitor name" },
+        "visitorEmail": { "type": "string", "format": "email", "description": "The supporting visitor email" },
+        "visitorPhone": { "type": "string", "description": "The supporting visitor phone number" },
+        "priority": { "type": "string", "enum": ["low", "medium", "high"], "description": "The priority designation" },
+        "status": { "type": "string", "enum": ["open", "in_progress", "resolved", "closed"], "description": "The ticket workflow state" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Ticket file timestamp" },
+        "replies": { "type": "array", "description": "The chronologically ordered conversation thread" }
+      },
+      "required": ["id", "businessId", "title", "description", "visitorName", "priority", "status", "createdAt"]
+    },
+    "ChatSession": {
+      "title": "ChatSession",
+      "description": "Active chatbot or human handoff text channels",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique session channel identifier" },
+        "businessId": { "type": "string", "description": "The business workspace ID" },
+        "visitorSessionId": { "type": "string", "description": "Session tracking token stored in client's cookies/local storage" },
+        "visitorName": { "type": "string", "description": "Captured guest name" },
+        "visitorEmail": { "type": "string", "format": "email", "description": "Captured guest email" },
+        "visitorPhone": { "type": "string", "description": "Captured guest phone" },
+        "status": { "type": "string", "enum": ["bot_active", "staff_active", "resolved"], "description": "State transition model for support" },
+        "assignedTo": { "type": "string", "description": "UID of the staff member assigned to this chat if live" },
+        "lastMessageAt": { "type": "string", "format": "date-time", "description": "Timestamp of the last message update" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Session creation timestamp" }
+      },
+      "required": ["id", "businessId", "visitorSessionId", "status", "lastMessageAt", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "Primary user configuration records key-valued by authenticating Auth user UIDs"
+    },
+    "businesses/{businessId}": {
+      "schema": "Business",
+      "description": "Master SaaS business records"
+    },
+    "faqs/{faqId}": {
+      "schema": "Faq",
+      "description": "Structured Q&A training documents mapped to SaaS businesses"
+    },
+    "documents/{documentId}": {
+      "schema": "Document",
+      "description": "RAG unstructured document pieces mapped to SaaS businesses"
+    },
+    "leads/{leadId}": {
+      "schema": "Lead",
+      "description": "Visitor contact details logged per business"
+    },
+    "tickets/{ticketId}": {
+      "schema": "Ticket",
+      "description": "Helpdesk desk tickets logged per business"
+    },
+    "chatSessions/{sessionId}": {
+      "schema": "ChatSession",
+      "description": "Chat channels mapped dynamically to visitors and support reps"
+    }
+  }
+}

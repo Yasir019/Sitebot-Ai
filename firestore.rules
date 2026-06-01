@@ -1,0 +1,136 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function userDoc(userId) {
+      return get(/databases/$(database)/documents/users/$(userId)).data;
+    }
+
+    function userExists(userId) {
+      return exists(/databases/$(database)/documents/users/$(userId));
+    }
+
+    function isPlatformAdmin() {
+      return isSignedIn() &&
+        userExists(request.auth.uid) &&
+        userDoc(request.auth.uid).role == 'super_admin';
+    }
+
+    function isBusinessOwner(businessId) {
+      return isSignedIn() &&
+        userExists(request.auth.uid) &&
+        userDoc(request.auth.uid).businessId == businessId &&
+        userDoc(request.auth.uid).role == 'business_owner';
+    }
+
+    function isBusinessStaff(businessId) {
+      return isSignedIn() &&
+        userExists(request.auth.uid) &&
+        userDoc(request.auth.uid).businessId == businessId &&
+        (userDoc(request.auth.uid).role == 'staff' || userDoc(request.auth.uid).role == 'business_owner');
+    }
+
+    match /users/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || isPlatformAdmin());
+      allow list: if isPlatformAdmin();
+      allow create: if isSignedIn() &&
+        request.auth.uid == userId &&
+        request.resource.data.id == userId &&
+        (
+          request.resource.data.role in ['business_owner', 'staff'] ||
+          (
+            request.resource.data.role == 'super_admin' &&
+            (
+              request.resource.data.email in ['admin@sitebot.ai', 'alex@sitebot.ai'] ||
+              userId == 'UMpjIfQA4lPjyUGHP106R1RSeNJ3'
+            )
+          )
+        );
+      allow update: if (
+        isSignedIn() &&
+        request.auth.uid == userId &&
+        request.resource.data.role == resource.data.role &&
+        request.resource.data.businessId == resource.data.businessId
+      ) || (
+        isSignedIn() &&
+        request.auth.uid == userId &&
+        (
+          request.resource.data.role == 'super_admin' &&
+          (
+            request.resource.data.email in ['admin@sitebot.ai', 'alex@sitebot.ai'] ||
+            userId == 'UMpjIfQA4lPjyUGHP106R1RSeNJ3'
+          )
+        )
+      );
+      allow delete: if isPlatformAdmin();
+    }
+
+    match /businesses/{businessId} {
+      allow get: if isPlatformAdmin() || isBusinessStaff(businessId) || resource.data.status == 'active';
+      allow list: if isPlatformAdmin();
+      allow create: if isSignedIn() &&
+        isValidId(businessId) &&
+        request.resource.data.id == businessId &&
+        request.resource.data.ownerId == request.auth.uid;
+      allow update: if isPlatformAdmin() || isBusinessOwner(businessId);
+      allow delete: if isPlatformAdmin();
+    }
+
+    match /faqs/{faqId} {
+      allow get, list: if isPlatformAdmin() || isBusinessStaff(resource.data.businessId);
+      allow create: if isSignedIn() && isBusinessStaff(request.resource.data.businessId);
+      allow update: if isSignedIn() &&
+        isBusinessStaff(resource.data.businessId) &&
+        request.resource.data.businessId == resource.data.businessId;
+      allow delete: if isSignedIn() && isBusinessStaff(resource.data.businessId);
+    }
+
+    match /documents/{documentId} {
+      allow get, list: if isPlatformAdmin() || isBusinessStaff(resource.data.businessId);
+      allow create: if isSignedIn() && isBusinessStaff(request.resource.data.businessId);
+      allow update: if isSignedIn() &&
+        isBusinessStaff(resource.data.businessId) &&
+        request.resource.data.businessId == resource.data.businessId;
+      allow delete: if isSignedIn() && isBusinessOwner(resource.data.businessId);
+    }
+
+    match /leads/{leadId} {
+      allow get, list: if isPlatformAdmin() || isBusinessStaff(resource.data.businessId);
+      allow create: if request.resource.data.businessId is string && isValidId(request.resource.data.businessId);
+      allow update: if isSignedIn() && isBusinessStaff(resource.data.businessId);
+      allow delete: if isSignedIn() && isBusinessOwner(resource.data.businessId);
+    }
+
+    match /tickets/{ticketId} {
+      allow get: if isPlatformAdmin() || isBusinessStaff(resource.data.businessId);
+      allow list: if isPlatformAdmin() || isBusinessStaff(resource.data.businessId);
+      allow create: if request.resource.data.businessId is string && isValidId(request.resource.data.businessId);
+      allow update: if isSignedIn() && isBusinessStaff(resource.data.businessId);
+      allow delete: if isSignedIn() && isBusinessOwner(resource.data.businessId);
+    }
+
+    match /chatSessions/{sessionId} {
+      allow get, list: if isPlatformAdmin() || isBusinessStaff(resource.data.businessId);
+      allow create: if request.resource.data.businessId is string && isValidId(request.resource.data.businessId);
+      allow update: if isSignedIn() && isBusinessStaff(resource.data.businessId);
+      allow delete: if isSignedIn() && isBusinessOwner(resource.data.businessId);
+    }
+
+    match /chatMessages/{messageId} {
+      allow get, list: if isPlatformAdmin() || isBusinessStaff(resource.data.businessId);
+      allow create: if request.resource.data.businessId is string && isValidId(request.resource.data.businessId);
+      allow update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

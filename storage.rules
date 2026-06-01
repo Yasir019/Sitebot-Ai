@@ -1,0 +1,30 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function userDoc() {
+      return firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isPlatformAdmin() {
+      return isSignedIn() && userDoc().role == 'super_admin';
+    }
+
+    function isBusinessStaff(businessId) {
+      return isSignedIn() &&
+        userDoc().businessId == businessId &&
+        (userDoc().role == 'staff' || userDoc().role == 'business_owner');
+    }
+
+    match /businesses/{businessId}/{allPaths=**} {
+      allow read, write: if isPlatformAdmin() || isBusinessStaff(businessId);
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

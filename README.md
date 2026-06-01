@@ -1,20 +1,69 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# SiteBot AI
 
-# Run and deploy your AI Studio app
+SiteBot AI is a multi-tenant chatbot platform for businesses that need a fast way to train customer support bots on their own data, capture leads, manage tickets, and hand conversations to staff when needed.
 
-This contains everything you need to run your app locally.
+## Screenshots
 
-View your app in AI Studio: https://ai.studio/apps/c2b78468-3576-452c-b65e-78f70d724999
+### Landing Page
+
+![SiteBot AI landing page](screenshots/landing.png)
+
+### Business Owner Dashboard
+
+![Business owner dashboard](screenshots/owner-dashboard.png)
+
+### Staff Support Desk
+
+![Staff support desk](screenshots/staff-dashboard.png)
+
+### Platform Admin Dashboard
+
+![Platform admin dashboard](screenshots/admin-dashboard.png)
+
+## Features
+
+- Role-based dashboards for platform admins, business owners, and staff.
+- Chatbot training flows for FAQs, documents, business details, and website data.
+- Live support queue, tickets, leads, analytics, and unanswered-question review.
+- Firebase-ready authentication and security rules.
+- Local demo data for quick testing without a production database.
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisite:** Node.js 18 or newer.
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+
+   ```bash
+   npm install
+   ```
+
+2. Create a local environment file:
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+3. Fill in the required API and Firebase values in `.env.local`.
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the local URL printed by the server, usually `http://localhost:3000`.
+
+## Demo Accounts
+
+Use these accounts in local development:
+
+- Platform admin: `admin@sitebot.ai` / `admin123`
+- Business owner: `owner@restaurant.com` / `owner123`
+- Staff member: `staff@restaurant.com` / `staff123`
+
+## Build
+
+```bash
+npm run build
+```
